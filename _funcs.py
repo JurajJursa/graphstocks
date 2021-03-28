@@ -8,9 +8,13 @@ import numpy as np
 
 
 
+'''
+This function takes in a list of tickers, which are strings, corresponding to the stock_df_list.
+Stock_df_list is a list of dataframes, each one contains daily_change column, and all of them work with the
+same date range.
+'''
 
-
-def correlation_matrix(stock_df_list:list[pd.DataFrame], tickers:list[str], lead_lag:int, window_size:int, offset:int, to_csv:bool =False):
+def correlation_matrix(stock_df_list:list[pd.DataFrame], tickers:list[str], lead_lag:int, window_size:int, offset:int):
     stock_closes_df = pd.DataFrame()
     for i in range(len(tickers)):
         stock_closes_df[tickers[i]] = stock_df_list[i]['daily_change']
@@ -33,6 +37,4 @@ def correlation_matrix(stock_df_list:list[pd.DataFrame], tickers:list[str], lead
     corr_matrix = corr_matrix.iloc[0:l, l:]
     corr_matrix.rename(columns=lambda x: x[:-7], inplace=True)
     
-    if to_csv:
-        corr_matrix.to_csv(f"corr_matrix_{lead_lag}_{window_size}_{offset}.csv")
     return corr_matrix
