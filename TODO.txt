@@ -1,0 +1,9 @@
+- save Wrds dfs
+- create some tools for analysis of matrices (how many of them are above certain value, look at trends?)
+- what if there is no persistence? Is there a persistence over months, larger window size?
+	- look for specific case which is most persistent
+
+- Other ideas: systematic S&P market shorting strategy, based on graph components
+	- edges might not necessarily be lead lag correlations
+	- attempt no-lag correlations in closes
+	- Finite state automata and Markov chains

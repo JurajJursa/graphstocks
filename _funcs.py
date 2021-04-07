@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 import numpy as np
 
-
+from typing import List
 
 
 
@@ -14,11 +14,13 @@ Stock_df_list is a list of dataframes, each one contains daily_change column, an
 same date range.
 '''
 
-def correlation_matrix(stock_df_list:list[pd.DataFrame], tickers:list[str], lead_lag:int, window_size:int, offset:int):
+def correlation_matrix(stock_df_list:List[pd.DataFrame], tickers:List[str], lead_lag:int, window_size:int, offset:int):
     stock_closes_df = pd.DataFrame()
     for i in range(len(tickers)):
         stock_closes_df[tickers[i]] = stock_df_list[i]['daily_change']
     print("Dataframe of daily changes for each stock is created!")
+    
+    print(stock_closes_df.head())
     
     corr_a = stock_closes_df.iloc[offset:(offset+window_size)].copy()
     corr_b = stock_closes_df.iloc[(offset+lead_lag):(offset+window_size+lead_lag)].copy()
